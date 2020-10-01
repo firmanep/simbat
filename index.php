@@ -37,40 +37,83 @@ include('partials/global.php');
         <?php include('partials/scripts.php'); ?>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script>
+            <?php
+                include('api/db_access.php'); 
+                 $sensor1 = array();
+                 $sensor2 = array();
+                 $sensor3 = array();
+                 $sensor4 = array();
+                 $waktu = array();
+             
+                 $load = mysqli_query($conn, "SELECT * FROM pengukuran ORDER BY id_ukur DESC");
+                 
+                 while ($row = mysqli_fetch_array($load)){
+                     $sensor1[] = $row['sensor1'];
+                     $sensor2[] = $row['sensor2'];
+                     $sensor3[] = $row['sensor3'];
+                     $sensor4[] = $row['sensor4'];
+                     $waktu[] = $row['waktu'];
+                 }
+            ?>
+            var sensor1 = <?php echo json_encode($sensor1); ?>;
+            var sensor2 = <?php echo json_encode($sensor2); ?>;
+            var sensor3 = <?php echo json_encode($sensor3); ?>;
+            var sensor4 = <?php echo json_encode($sensor4); ?>;
+            var waktu = <?php echo json_encode($waktu); ?>;
             var ctx = document.getElementById('myChart').getContext('2d');
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                     data: {
-                    labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
+                    labels: waktu,
                     datasets: [{ 
-                        data: [86,114,106,106,107,111,133,221,783,2478],
-                        label: "Africa",
+                        data: sensor1,
+                        label: "Sensor 1",
                         borderColor: "#3e95cd",
                         fill: false
                     }, { 
-                        data: [282,350,411,502,635,809,947,1402,3700,5267],
-                        label: "Asia",
+                        data: sensor2,
+                        label: "Sensor 2",
                         borderColor: "#8e5ea2",
                         fill: false
                     }, { 
-                        data: [168,170,178,190,203,276,408,547,675,734],
-                        label: "Europe",
+                        data: sensor3,
+                        label: "Sensor 3",
                         borderColor: "#3cba9f",
                         fill: false
                     }, { 
-                        data: [40,20,10,16,24,38,74,167,508,784],
-                        label: "Latin America",
+                        data: sensor4,
+                        label: "Sensor 4",
                         borderColor: "#e8c3b9",
                         fill: false
                     }
                     ]
                 },
                 options: {
-                    title: {
-                    display: true,
-                    text: 'World population per region (in millions)'
+                scales: {
+                xAxes: [{
+                    time: {
+                    unit: 'date'
+                    },
+                    gridLines: {
+                    display: false
+                    },
+                    
+                }],
+                yAxes: [{
+                    ticks: {
+                    min: 0,
+                    
+                    
+                    },
+                    gridLines: {
+                    color: "rgba(0, 0, 0, .125)",
                     }
+                }],
+                },
+                legend: {
+                display: true
                 }
+            }
                 
             });
         </script>

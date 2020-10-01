@@ -23,7 +23,7 @@ if(isset($_GET['s1']) && isset($_GET['s2']) && isset($_GET['s3']) && isset($_GET
     }else{
         echo 'Berhasil';
     }
-    echo $sql;
+ 
 }else{
     echo 'Data tidak lengkap';
 }

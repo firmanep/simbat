@@ -64,7 +64,7 @@ include('partials/global.php');
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                     data: {
-                    labels: waktu,
+                    labels: waktu.reverse(),
                     datasets: [{ 
                         data: sensor1.reverse(),
                         label: "Sensor 1",

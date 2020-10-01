@@ -63,11 +63,6 @@ include('partials/global.php');
                         label: "Latin America",
                         borderColor: "#e8c3b9",
                         fill: false
-                    }, { 
-                        data: [6,3,2,2,7,26,82,172,312,433],
-                        label: "North America",
-                        borderColor: "#c45850",
-                        fill: false
                     }
                     ]
                 },

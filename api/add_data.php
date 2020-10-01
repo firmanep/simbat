@@ -1,5 +1,5 @@
 <?php
-
+include('db_access.php');
 
 function getTime($stamp){
     $date = new DateTime("now", new DateTimeZone('Asia/Makassar') );
@@ -12,7 +12,7 @@ function getTime($stamp){
 
 
 
-$conn = mysqli_connect("localhost", "admin", "makassar", "simbat");
+
 if(isset($_GET['s1']) && isset($_GET['s2']) && isset($_GET['s3']) && isset($_GET['s4'])){
     $sekarang = getTime(time());
     $sql = "INSERT INTO pengukuran (sensor1, sensor2, sensor3, sensor4, waktu) 

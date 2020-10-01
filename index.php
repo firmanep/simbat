@@ -66,22 +66,22 @@ include('partials/global.php');
                     data: {
                     labels: waktu,
                     datasets: [{ 
-                        data: sensor1,
+                        data: sensor1.reverse(),
                         label: "Sensor 1",
                         borderColor: "#3e95cd",
                         fill: false
                     }, { 
-                        data: sensor2,
+                        data: sensor2.reverse(),
                         label: "Sensor 2",
                         borderColor: "#8e5ea2",
                         fill: false
                     }, { 
-                        data: sensor3,
+                        data: sensor3.reverse(),
                         label: "Sensor 3",
                         borderColor: "#3cba9f",
                         fill: false
                     }, { 
-                        data: sensor4,
+                        data: sensor4.reverse(),
                         label: "Sensor 4",
                         borderColor: "#e8c3b9",
                         fill: false
@@ -96,14 +96,11 @@ include('partials/global.php');
                     },
                     gridLines: {
                     display: false
-                    },
-                    
+                    },                    
                 }],
                 yAxes: [{
                     ticks: {
-                    min: 0,
-                    
-                    
+                    min: 0,                                        
                     },
                     gridLines: {
                     color: "rgba(0, 0, 0, .125)",

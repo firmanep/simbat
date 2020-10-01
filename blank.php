@@ -1,6 +1,4 @@
 <?php 
-session_start();
-include('access/session.php'); 
 include('partials/global.php'); 
 
  ?>

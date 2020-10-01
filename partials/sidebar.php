@@ -8,6 +8,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-home"></i></div>
                     Home
                 </a>
+                <a class="nav-link" href="log.php">
+                    <div class="sb-nav-link-icon"><i class="fas fa-list"></i></div>
+                    Log
+                </a>
                
                 
                 

@@ -13,10 +13,10 @@ function getTime($stamp){
 
 
 
-if(isset($_GET['s1']) && isset($_GET['s2']) && isset($_GET['s3']) && isset($_GET['s4'])){
+if(isset($_POST['s1']) && isset($_POST['s2']) && isset($_POST['s3']) && isset($_POST['s4'])){
     $sekarang = getTime(time());
     $sql = "INSERT INTO pengukuran (sensor1, sensor2, sensor3, sensor4, waktu) 
-    VALUES (".$_GET['s1'].", ".$_GET['s2'].", ".$_GET['s3'].", ".$_GET['s4'].", '".$sekarang."')";
+    VALUES (".$_POST['s1'].", ".$_POST['s2'].", ".$_POST['s3'].", ".$_POST['s4'].", '".$sekarang."')";
     $result = mysqli_query($conn, $sql);
     if(!($result)){
         echo 'Error query pengukuran';

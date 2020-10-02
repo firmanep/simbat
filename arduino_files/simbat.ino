@@ -30,18 +30,13 @@ void setup() {
   WiFi.mode(WIFI_STA);        //Only Station No AP, This line hides the viewing of ESP as wifi hotspot
   
   WiFi.begin(ssid, password);     //Connect to your WiFi router
-  Serial.println("");
-  display.clearDisplay();
-  display.setTextColor(WHITE);
-  display.setTextSize(1);
-  display.setCursor(10, 10);
-  display.print("Connecting");
+  Serial.println(""); 
+  Serial.print("Connecting");
  
   // Wait for connection
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    display.print(".");
-     display.display(); 
+   
   }
 
   //If connection successful show IP address in serial monitor
@@ -62,7 +57,7 @@ void loop() {
     bat3 = getValue(data, '|', 2);
     bat4 = getValue(data, '|', 3);
 
-    sendPostData(uid); 
+    sendPostData(bat1,bat2,bat3,bat4); 
 
  
   }  
@@ -71,7 +66,10 @@ void loop() {
 
 
 void sendPostData(String s1, String s2, String s3, String s4){
-  card.trim();  
+  s1.trim();  
+  s2.trim();  
+  s3.trim();  
+  s4.trim();  
   WiFiClientSecure httpsClient;    //Declare object of class WiFiClient
 
   Serial.println(host);
@@ -90,11 +88,9 @@ void sendPostData(String s1, String s2, String s3, String s4){
   }
   if(r==30) {
     Serial.println("Connection failed");
-    display.setCursor(0, 43);
-    display.setTextSize(1);
-    display.println("Koneksi Gagal!");  
     
-    display.display();
+    
+    
   }
   else {
     Serial.println("Connected to web");
@@ -137,10 +133,23 @@ void sendPostData(String s1, String s2, String s3, String s4){
   Serial.println("==========");
   Serial.println("closing connection");  
   Serial.println("Connection failed");
-  display.setCursor(0, 43);
-  display.setTextSize(2);
-  display.println("OK!");
-     display.display();
+
+  
   delay(2000);
     
+}
+
+String getValue(String data, char separator, int index) {
+  int found = 0;
+  int strIndex[] = {0, -1};
+  int maxIndex = data.length() - 1;
+
+  for (int i = 0; i <= maxIndex && found <= index; i++) {
+    if (data.charAt(i) == separator || i == maxIndex) {
+      found++;
+      strIndex[0] = strIndex[1] + 1;
+      strIndex[1] = (i == maxIndex) ? i + 1 : i;
+    }
+  }
+  return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
 }

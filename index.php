@@ -44,15 +44,20 @@ include('partials/global.php');
                  $sensor3 = array();
                  $sensor4 = array();
                  $waktu = array();
-             
-                 $load = mysqli_query($conn, "SELECT * FROM pengukuran ORDER BY id_ukur DESC");
+
+
                  
+             
+                 $load = mysqli_query($conn, "SELECT * FROM pengukuran ORDER BY id_ukur DESC LIMIT 50");
+                 $nomor = 1;
                  while ($row = mysqli_fetch_array($load)){
                      $sensor1[] = $row['sensor1'];
                      $sensor2[] = $row['sensor2'];
                      $sensor3[] = $row['sensor3'];
                      $sensor4[] = $row['sensor4'];
-                     $waktu[] = $row['waktu'];
+                    //  $waktu[] = $row['waktu'];
+                    $waktu[] = $nomor;
+                    $nomor++;
                  }
             ?>
             var sensor1 = <?php echo json_encode($sensor1); ?>;
@@ -64,7 +69,7 @@ include('partials/global.php');
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                     data: {
-                    labels: waktu.reverse(),
+                    labels: waktu,
                     datasets: [{ 
                         data: sensor1.reverse(),
                         label: "Sensor 1",

@@ -52,12 +52,15 @@ void loop() {
   while (Serial.available() > 0) {
     data = Serial.readStringUntil('\n');
     data.trim();
-    bat1 = getValue(data, '|', 0);
-    bat2 = getValue(data, '|', 1);
-    bat3 = getValue(data, '|', 2);
-    bat4 = getValue(data, '|', 3);
-
-    sendPostData(bat1,bat2,bat3,bat4); 
+    if(data != ""){
+      bat1 = getValue(data, '|', 0);
+      bat2 = getValue(data, '|', 1);
+      bat3 = getValue(data, '|', 2);
+      bat4 = getValue(data, '|', 3);
+  
+      sendPostData(bat1,bat2,bat3,bat4);
+    }
+     
 
  
   }  

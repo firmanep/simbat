@@ -25,7 +25,7 @@ if(isset($_POST['s1']) && isset($_POST['s2']) && isset($_POST['s3']) && isset($_
     }
  
 }else{
-    echo 'Data tidak lengkap';
+    echo 'Data tidak lengkap :  '.$_POST['s1'].' - '.$_POST['s2'].' - '.$_POST['s3'].' - '.$_POST['s4'];
 }
 
 

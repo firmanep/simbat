@@ -13,7 +13,7 @@ include('partials/global.php');
  
         
         
-        <title><?php echo $webname; ?> - Blank</title>        
+        <title><?php echo $webname; ?> - Tabel Log</title>        
     </head>
     <body>
         <?php include('partials/topbar.php'); ?>
@@ -22,7 +22,7 @@ include('partials/global.php');
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid">
-                        <h1 class="mt-4">Log</h1>                        
+                        <h1 class="mt-4">Tabel Log</h1>                        
                         <div class="card mb-4">
                             <div class="card-body">
                                <div class="row">
